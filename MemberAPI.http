@@ -1,0 +1,37 @@
+### get member
+@id = 2
+GET localhost:8090/api/v1/members/{{id}}
+
+### create member
+POST localhost:8090/api/v1/members
+Content-Type: application/json
+
+{
+    "name": "Min35Woong",
+    "age": 2
+}
+
+### get member list
+GET localhost:8090/api/v1/members/list
+
+
+### get member count
+GET localhost:8090/api/v1/members/count
+
+### delete member
+POST localhost:8090/api/v1/members/delete
+Content-Type: application/x-www-form-urlencoded
+
+id = 1
+
+### get member paging
+@pageIdx = 0
+@pageSize = 3
+@sortBy = name
+@orderBy = asc
+GET localhost:8090/api/v1/members/paging?page={{pageIdx}}&size={{pageSize}}&sort={{sortBy}}, {{orderBy}}
+
+### search members by name and age
+@name = Woo
+@age = 3
+GET localhost:8090/api/v1/members/search?name={{name}}&age={{age}}
