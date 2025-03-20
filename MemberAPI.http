@@ -7,8 +7,8 @@ POST localhost:8090/api/v1/members
 Content-Type: application/json
 
 {
-    "name": "Min35Woong",
-    "age": 2
+    "name": "Woong12345",
+    "age": 20
 }
 
 ### get member list
@@ -35,3 +35,15 @@ GET localhost:8090/api/v1/members/paging?page={{pageIdx}}&size={{pageSize}}&sort
 @name = Woo
 @age = 3
 GET localhost:8090/api/v1/members/search?name={{name}}&age={{age}}
+
+### create task
+POST localhost:8090/api/v1/task
+Content-Type: application/json
+
+{
+  "memberId": 5,
+  "contents": "task"
+}
+
+### get task member
+GET localhost:8090/api/v1/task/4/member
