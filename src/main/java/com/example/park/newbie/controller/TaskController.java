@@ -5,6 +5,7 @@ import com.example.park.newbie.dto.MemberDto;
 import com.example.park.newbie.dto.TaskDto;
 import com.example.park.newbie.model.Member;
 import com.example.park.newbie.service.TaskService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,12 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Void> createTask(@RequestBody TaskDto.CreateTaskRequest request) {
-        taskService.createTask(request.memberId(), request.contents());
+        try {
+            taskService.createTask(request.memberId(), request.contents());
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
